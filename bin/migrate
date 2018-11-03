@@ -15,6 +15,6 @@ set -o allexport
 source ./etc/environment
 set +o allexport
 
-bin/distillery_example migrate
+bin/phoenix_crud migrate
 
 exit $?
