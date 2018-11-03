@@ -1,51 +1,49 @@
-# Import all plugins from `rel/plugins`
-# They can then be used by adding `plugin MyPlugin` to
-# either an environment, or release definition, where
-# `MyPlugin` is the name of the plugin module.
 ~w(rel plugins *.exs)
 |> Path.join()
 |> Path.wildcard()
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    # This sets the default release built by `mix release`
     default_release: :default,
-    # This sets the default environment used by `mix release`
     default_environment: Mix.env()
 
-# For a full list of config options for both releases
-# and environments, visit https://hexdocs.pm/distillery/config/distillery.html
-
-
-# You may define one or more environments in this file,
-# an environment's settings will override those of a release
-# when building in that environment, this combination of release
-# and environment configuration is called a profile
 
 environment :dev do
-  # If you are running Phoenix, you should make sure that
-  # server: true is set and the code reloader is disabled,
-  # even in dev mode.
-  # It is recommended that you build with MIX_ENV=prod and pass
-  # the --env flag to Distillery explicitly if you want to use
-  # dev mode.
   set dev_mode: true
   set include_erts: false
-  set cookie: :"*,Nes,;68%0pU$eQEV8mi.H!gBV)*H[m3zs)j6}xktmtN[~^NUBtDj;`~62|(K)1"
+  set cookie: :"l];J<ek/U*.zxTecvnL(~sP~X.H)rcBLwOUB[3ZGV;il6xk;6Xz|x;R4ev!<;u1e"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"`(g>H9,Z!{njD$yL/|}&N{c$adX1~2R1LFR%yufuIIPr2xTDbtO)OYR*)lhc&qbb"
+  set cookie: :"niacks]vOyv&k6[sBF]y4}xxHn|vC6~@{kTh5[P>4>2dGG{F:cpxKE7G78c%JWtU"
+
+  # Custom vm.args
+  set vm_args: "rel/vm.args"
+
+  # Custom commands
+  set commands: [
+    migrate: "rel/commands/migrate.sh"
+  ]
+
+  # We use an extra config evaluated solely at runtime
+  set config_providers: [
+    {Mix.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
+  ]
+
+  # We source control our service file, overlay it into the release tarball
+  # and it is expected that this path will be symlinked to the appropriate systemd service
+  # directory on the target
+  set overlays: [
+    {:mkdir, "etc"},
+    {:template, "rel/etc/phoenix-crud.service", "etc/phoenix-crud.service"},
+    {:copy, "rel/etc/config.exs", "etc/config.exs"}
+  ]
 end
 
-# You may define one or more releases in this file.
-# If you have not set a default release, or selected one
-# when running `mix release`, the first release in the file
-# will be used by default
 
-release :phoenix_crud do
+release :distillery_example do
   set version: current_version(:phoenix_crud)
   set applications: [
     :runtime_tools
