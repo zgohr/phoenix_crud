@@ -25,12 +25,12 @@ defmodule PhoenixCrud.Tasks.Migrate do
     migrations_dir = Path.join([priv_dir, "repo", "migrations"])
 
     opts = [all: true]
-    pool = PhoenixCrud.Repo.config[:pool]
-    if function_exported?(pool, :unboxed_run, 2) do
-      pool.unboxed_run(PhoenixCrud.Repo, fn -> Ecto.Migrator.run(PhoenixCrud.Repo, migrations_dir, :up, opts) end)
-    else
-      Ecto.Migrator.run(PhoenixCrud.Repo, migrations_dir, :up, opts)
-    end
+    # pool = PhoenixCrud.Repo.config[:pool]
+    # if function_exported?(pool, :unboxed_run, 2) do
+      # pool.unboxed_run(PhoenixCrud.Repo, fn -> Ecto.Migrator.run(PhoenixCrud.Repo, migrations_dir, :up, opts) end)
+    # else
+    Ecto.Migrator.run(PhoenixCrud.Repo, migrations_dir, :up, opts)
+    # end
 
     # Shut down
     :init.stop()
