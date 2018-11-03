@@ -17,7 +17,7 @@ defmodule PhoenixCrud.Tasks.Migrate do
 
     # Start the repo
     IO.puts "==> Starting repo"
-    {:ok, _pid} = PhoenixCrud.Repo.start_link(pool_size: 1)
+    {:ok, _pid} = PhoenixCrud.Repo.start_link(pool_size: 2)
 
     # Run the migrations for the repo
     IO.puts "==> Running migrations"
