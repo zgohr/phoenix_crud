@@ -21,7 +21,7 @@ phases:
 
 artifacts:
   files:
-    - distillery_example.tar.gz
+    - phoenix_crud.tar.gz
     - appspec.yml
     - templates/infra.yml
     - templates/production.conf

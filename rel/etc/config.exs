@@ -38,7 +38,7 @@ config :phoenix_crud, PhoenixCrud.Repo,
   pool_size: 15
 
 # Set configuration for Phoenix endpoint
-config :phoenix_crud, PhoenixCrud.Endpoint,
+config :phoenix_crud, PhoenixCrudWeb.Endpoint,
   http: [port: 4000],
   url: [host: "localhost", port: 4000],
   root: ".",

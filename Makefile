@@ -1,7 +1,7 @@
 .PHONY: help
 
 VERSION ?= `grep 'version' mix.exs | sed -e 's/ //g' -e 's/version://' -e 's/[",]//g'`
-IMAGE_NAME ?= phoenix_example
+IMAGE_NAME ?= phoenix_crud
 PWD ?= `pwd`
 
 help:
