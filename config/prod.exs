@@ -5,7 +5,7 @@ config :phoenix_crud, PhoenixCrudWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   version: Application.spec(:phoenix_crud, :vsn)
 
-config :distillery_example, PhoneixCrud.Repo,
+config :phoenix_crud, PhoneixCrud.Repo,
   adapter: Ecto.Adapters.Postgres
 
 # Do not print debug messages in production

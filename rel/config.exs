@@ -43,7 +43,7 @@ environment :prod do
 end
 
 
-release :distillery_example do
+release :phoenix_crud do
   set version: current_version(:phoenix_crud)
   set applications: [
     :runtime_tools
