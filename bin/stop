@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+if systemctl is-active phoenix-crud.service; then
+    systemctl stop phoenix-crud.service
+fi
+
+exit 0

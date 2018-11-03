@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+systemctl start phoenix-crud.service
+
+exit 0
