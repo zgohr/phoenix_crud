@@ -16,7 +16,7 @@ defmodule PhoenixCrudWeb.Router do
   scope "/", PhoenixCrudWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    resources "/", AddressController
   end
 
   # Other scopes may use custom stacks.
