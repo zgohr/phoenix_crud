@@ -6,14 +6,11 @@ defmodule PhoenixCrud.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
-      PhoenixCrud.Repo,
-      # Start the endpoint when the application starts
-      PhoenixCrudWeb.Endpoint
-      # Starts a worker by calling: PhoenixCrud.Worker.start_link(arg)
-      # {PhoenixCrud.Worker, arg},
+      supervisor(PhoenixCrud.Database, []),
+      supervisor(PhoenixCrudWeb.Endpoint, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

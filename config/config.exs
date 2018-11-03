@@ -3,10 +3,9 @@
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
-
-# General application configuration
 use Mix.Config
 
+# General application configuration
 config :phoenix_crud,
   ecto_repos: [PhoenixCrud.Repo]
 
@@ -15,7 +14,8 @@ config :phoenix_crud, PhoenixCrudWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "AsWIMqgjgQJ//Clu5A29K6N7a4t/8qjVRCvZkKJQmh1E2FyV/sSoY48P9Y17/Qe+",
   render_errors: [view: PhoenixCrudWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: PhoenixCrud.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: PhoenixCrud.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
