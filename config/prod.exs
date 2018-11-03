@@ -8,8 +8,4 @@ config :phoenix_crud, PhoenixCrudWeb.Endpoint,
 config :phoenix_crud, PhoneixCrud.Repo,
   adapter: Ecto.Adapters.Postgres
 
-# Do not print debug messages in production
-config :logger,
-  level: :info,
-  handle_sasl_reports: true,
-  handle_otp_reports: true
+config :logger, level: :info
